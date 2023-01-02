@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm") version "1.8.0"
-    `java-gradle-plugin`
+    id("com.gradle.plugin-publish") version "1.0.0"
 }
 
 dependencies {
@@ -18,14 +18,22 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+group = "dev.afilippov.android"
+version = "0.1.0"
+
 gradlePlugin {
     plugins {
         create("android-drawable-generator") {
             id = "dev.afilippov.android.drawablegenerator"
             implementationClass = "dev.afilippov.android.drawablegenerator.DrawableGeneratorPlugin"
-            version = "0.1.0"
             displayName = "Drawable Generator"
         }
     }
 }
 
+pluginBundle {
+    website = "https://github.com/niveuseverto/android-drawable-generator"
+    vcsUrl = "https://github.com/niveuseverto/android-drawable-generator"
+    description = "Android gradle plugin to generate tinted vector drawables and png from svg resources"
+    tags = listOf("android", "android vector", "svg", "android resources")
+}
